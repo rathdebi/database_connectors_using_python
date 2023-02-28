@@ -1,0 +1,98 @@
+data and ai project usually have their say to data owners as data involves with a lot of dependencies and complexities.
+
+	1- database read and write -- a little tricky
+
+		1- insecurity from one database to other
+		2- data storage format and data security
+			1- data in operation -- a knightmare
+			2- resolving data state is very difficult
+
+	2- historical file dump
+
+		1- cloud storage / bulk load-- makes it easy
+		2- express connect and store it as is.
+
+
+let us say, sql server to snowflake migration is happening for one use case.
+
+
+
+1- sql server to your staging area (query builder)
+2- append data back to schema tables --snowflake
+3- preserve the database state with read and write
+
+
+
+how to do this?
+-----------------
+create db connectors class--
+	1- as it can be extended
+	2- very easy to maintain
+	3- super readable
+
+
+Class DBConnect1(SnowflakeObject):#inherit snowflake python object 
+	"""create a database connectorsql server - db_user, db_host, db_port, db_password, (jdbc/odbc)-on-prem
+	snowflake - db_user, db_host, db_port, db_password, (jdbc/odbc)-on-prem"""
+	def __init__():
+	def read_buffer():
+	def write_buffer():
+
+
+a simple illustration:-
+-----------------------
+class DBConnect2(SQLServer):
+	def __init__(self,db_user,db_password,db_host_name):
+		self.key = encrypt_key
+		#role based configs params
+			# if db owner access (is_admin=True)
+				# if paltform owner access (is_data_engg= True)access
+					# if staging data access (is_staging_data_access=False)
+	def read_buffer(self, read_conncetor):
+		if read_connector:
+			# proceed for read ops
+			# save in-memory data for analysis
+			# maintain data consistency
+		else:
+	                     raise Exception("database error")
+
+	def write_buffer(self, write_connector):
+		if write_connector:
+			# proceed for write data ops
+			# save the prediction data back
+			# maintain data consistency
+		else:
+	                     raise Exception("data is not in stable state.")
+
+
+using this above illustration we can create other db connectors as well.
+
+
+
+Class DBConnect1(MySQL):
+	def __init__():
+	def read_buffer():
+	def write_buffer():
+
+Class DBConnect2(Redis):
+	def __init__():
+	def read_buffer():
+	def write_buffer():
+
+Class DBConnect3(Aurora):
+	def __init__():
+	def read_buffer():
+	def write_buffer():
+
+Class DBConnect4(MongoDB):
+	def __init__():
+	def read_buffer():
+	def write_buffer():
+
+Class DBConnect5(DynamoDB):
+	def __init__():
+	def read_buffer():
+	def write_buffer():
+
+	
+
